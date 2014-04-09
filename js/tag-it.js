@@ -51,7 +51,10 @@
             // When enabled, quotes are unneccesary for inputting multi-word tags.
             allowSpaces: false,
 
-            // The below options are for using a single field instead of several
+            // Tag delimiters to use in addition to space, enter and tab
+            delimiterKeyCodes: [$.ui.keyCode.COMMA],
+
+          // The below options are for using a single field instead of several
             // for our form values.
             //
             // When enabled, will use a single hidden field for the form,
@@ -241,7 +244,7 @@
                     // Tab will also create a tag, unless the tag input is empty,
                     // in which case it isn't caught.
                     if (
-                        (event.which === $.ui.keyCode.COMMA && event.shiftKey === false) ||
+                        (($.inArray(event.which, that.options.delimiterKeyCodes) >= 0) && event.shiftKey === false) ||
                         event.which === $.ui.keyCode.ENTER ||
                         (
                             event.which == $.ui.keyCode.TAB &&
